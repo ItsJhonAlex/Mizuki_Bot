@@ -4,8 +4,8 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)](https://github.com/ItsJhonAlex/mizuki-bot)
-[![Stars](https://img.shields.io/github/stars/ItsJhonAlex/mizuki-bot?style=for-the-badge&logo=github)](https://github.com/ItsJhonAlex/mizuki-bot/stargazers)
+[![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)](https://github.com/ItsJhonAlex/Mizuki_Bot)
+[![Stars](https://img.shields.io/github/stars/ItsJhonAlex/Mizuki_Bot?style=for-the-badge&logo=github)](https://github.com/ItsJhonAlex/Mizuki_Bot/stargazers)
 
 Mizuki es tu asistente lunar perfecta para Discord. Con su elegancia celestial y tecnología avanzada, te ayuda a gestionar tu servidor con la suavidad de la luz de luna.
 

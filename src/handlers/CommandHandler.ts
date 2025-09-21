@@ -1,6 +1,7 @@
 import { Client, Collection, Events, Interaction } from 'discord.js';
 import { Command } from '../types';
 import { Logger } from '../utils/Logger';
+import chalk from 'chalk';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -37,7 +38,7 @@ export class CommandHandler {
                     
                     if ('data' in command && 'execute' in command) {
                         client.commands.set(command.data.name, command);
-                        this.logger.info(`✅ Comando cargado: ${command.data.name}`);
+                        this.logger.info(`✅ Comando cargado: ${chalk.cyan(command.data.name)}`);
                     } else {
                         this.logger.warn(`⚠️ Comando inválido en ${filePath}`);
                     }
@@ -54,13 +55,12 @@ export class CommandHandler {
 
             // Check cooldown
             if (command.cooldown) {
-                const { cooldowns } = client;
-                if (!cooldowns.has(command.data.name)) {
-                    cooldowns.set(command.data.name, new Collection());
+                if (!this.cooldowns.has(command.data.name)) {
+                    this.cooldowns.set(command.data.name, new Collection());
                 }
 
                 const now = Date.now();
-                const timestamps = cooldowns.get(command.data.name)!;
+                const timestamps = this.cooldowns.get(command.data.name)!;
                 const defaultCooldownDuration = 3;
                 const cooldownAmount = (command.cooldown ?? defaultCooldownDuration) * 1000;
 
@@ -69,10 +69,11 @@ export class CommandHandler {
 
                     if (now < expirationTime) {
                         const expiredTimestamp = Math.round(expirationTime / 1000);
-                        return interaction.reply({
+                        await interaction.reply({
                             content: `⏰ Por favor espera, puedes usar \`${command.data.name}\` <t:${expiredTimestamp}:R>.`,
                             ephemeral: true
                         });
+                        return;
                     }
                 }
 
@@ -83,7 +84,11 @@ export class CommandHandler {
             // Execute command
             try {
                 await command.execute(interaction);
-                this.logger.info(`🌙 Comando ejecutado: ${command.data.name} por ${interaction.user.tag}`);
+                this.logger.commandExecuted(
+                    command.data.name,
+                    interaction.user.tag,
+                    interaction.guild?.name
+                );
             } catch (error) {
                 this.logger.error(`Error ejecutando comando ${command.data.name}:`, error);
                 

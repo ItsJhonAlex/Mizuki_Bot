@@ -1,0 +1,8 @@
+# Ignore these files/folders
+node_modules/
+dist/
+logs/
+*.log
+.env
+.git/
+*.md

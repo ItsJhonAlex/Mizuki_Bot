@@ -4,18 +4,33 @@
   "description": "Mizuki - Tu asistente lunar perfecta para Discord",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "pnpm exec tsc",
     "start": "node dist/index.js",
     "dev": "nodemon --exec ts-node src/index.ts",
     "clean": "rm -rf dist",
-    "prebuild": "npm run clean"
+    "prebuild": "pnpm run clean"
   },
-  "keywords": ["discord", "bot", "mizuki", "lunar", "moderation"],
+  "keywords": [
+    "discord",
+    "bot",
+    "mizuki",
+    "lunar",
+    "moderation"
+  ],
   "author": "ItsJhonAlex",
   "license": "MIT",
   "type": "commonjs",
   "dependencies": {
+    "chalk": "^5.6.2",
     "discord.js": "^14.22.1",
-    "dotenv": "^17.2.2"
+    "dotenv": "^17.2.2",
+    "moment": "^2.30.1",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/winston": "^2.4.4",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2"
   }
 }
